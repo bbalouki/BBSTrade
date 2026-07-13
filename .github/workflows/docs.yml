@@ -63,16 +63,10 @@ jobs:
           name: site-cpp
           path: build/docs/html
 
-  combine-and-deploy:
-    name: Combine and deploy to GitHub Pages
+  combine:
+    name: Combine Python and C++ docs
     needs: [build-python-docs, build-cpp-docs]
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Download Python docs
         uses: actions/download-artifact@v4
@@ -91,7 +85,18 @@ jobs:
         with:
           path: combined-site
 
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: combine
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         id: deploy
         uses: actions/deploy-pages@v4
