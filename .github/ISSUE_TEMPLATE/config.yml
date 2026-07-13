@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://bbalouki.github.io/bbstrader/
+    about: Check the docs site for API reference, guides, and installation instructions before opening an issue.
+  - name: 🔒 Report a security vulnerability
+    url: https://github.com/bbalouki/bbstrader/security/advisories/new
+    about: Please do not report security vulnerabilities through public GitHub issues. See SECURITY.md.
+  - name: 💬 Ask a question / get help
+    url: https://github.com/bbalouki/bbstrader/issues/new/choose
+    about: For usage questions, open a Bug Report or Feature Request issue with as much context as possible.
+  - name: ✉️ Contact the maintainer
+    url: mailto:bertin@bbs-trading.com
+    about: For anything else, reach out to the maintainer directly.
