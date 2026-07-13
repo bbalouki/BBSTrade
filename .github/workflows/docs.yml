@@ -22,10 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -36,7 +36,7 @@ jobs:
         run: mkdocs build --site-dir site-python
 
       - name: Upload Python docs artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site-python
           path: site-python
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install Doxygen + Graphviz
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
@@ -58,7 +58,7 @@ jobs:
         run: cmake --build build --target docs
 
       - name: Upload C++ docs artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site-cpp
           path: build/docs/html
@@ -69,19 +69,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Python docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: site-python
           path: combined-site
 
       - name: Download C++ docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: site-cpp
           path: combined-site/cpp
 
       - name: Upload combined Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: combined-site
 
@@ -99,4 +99,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
