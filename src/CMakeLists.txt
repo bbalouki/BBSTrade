@@ -37,7 +37,6 @@ if(BUILD_PYTHON_BINDINGS)
     find_package(pybind11 CONFIG QUIET)
 
     if(NOT pybind11_FOUND)
-        include(FetchContent)
         set(FETCHCONTENT_BASE_DIR "${CMAKE_SOURCE_DIR}/.cache/_deps")
         include(FetchContent)
         FetchContent_Declare(
