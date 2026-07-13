@@ -1,0 +1,103 @@
+site_name: bbstrader
+site_description: Simplified Investment & Trading Toolkit with Python & C++
+site_url: https://bbalouki.github.io/bbstrader/
+repo_url: https://github.com/bbalouki/bbstrader
+repo_name: bbalouki/bbstrader
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; 2023 - 2026 Bertin Balouki SIMYELI
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+
+nav:
+  - Home: index.md
+  - API Reference:
+      - Overview: reference/index.md
+      - api: reference/api.md
+      - btengine: reference/btengine.md
+      - core: reference/core.md
+      - metatrader: reference/metatrader.md
+      - models: reference/models.md
+      - trading: reference/trading.md
+      - config & CLI: reference/misc.md
+  - C++ API (Doxygen): https://bbalouki.github.io/bbstrader/cpp/
+  - Contributing: contributing.md
+  - Code of Conduct: code-of-conduct.md
+  - Security: security.md
+  - Changelog: changelog.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["src"]
+          options:
+            docstring_style: google
+            docstring_section_style: table
+            merge_init_into_class: true
+            members_order: source
+            separate_signature: true
+            show_signature_annotations: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_source: true
+            filters: ["!^_"]
+
+exclude_docs: |
+  Doxyfile.in
+
+watch:
+  - src/bbstrader
+  - README.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - SECURITY.md
+  - CHANGELOG.md
