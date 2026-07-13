@@ -1,8 +1,9 @@
 # Simplified Investment & Trading Toolkit with Python & C++
 
 [![Build](https://github.com/bbalouki/bbstrader/actions/workflows/build.yml/badge.svg)](https://github.com/bbalouki/bbstrader/actions/workflows/build.yml)
-[![C++ Docs](https://github.com/bbalouki/bbstrader/actions/workflows/docs-cpp.yml/badge.svg)](https://github.com/bbalouki/bbstrader/actions/workflows/docs-cpp.yml)
-[![Py Status](https://readthedocs.org/projects/bbstrader/badge/?version=latest)](https://bbstrader.readthedocs.io/en/latest/?badge=latest)
+[![Lint](https://github.com/bbalouki/bbstrader/actions/workflows/lint.yml/badge.svg)](https://github.com/bbalouki/bbstrader/actions/workflows/lint.yml)
+[![Tests](https://github.com/bbalouki/bbstrader/actions/workflows/tests.yml/badge.svg)](https://github.com/bbalouki/bbstrader/actions/workflows/tests.yml)
+[![Docs](https://github.com/bbalouki/bbstrader/actions/workflows/docs.yml/badge.svg)](https://github.com/bbalouki/bbstrader/actions/workflows/docs.yml)
 [![PyPi status](https://img.shields.io/pypi/status/bbstrader.svg?maxAge=60)](https://pypi.python.org/pypi/bbstrader)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)
 ![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white)
@@ -444,8 +445,10 @@ git clone https://github.com/microsoft/vcpkg
 
 ## 🌍 Community & Support
 
-- **[Read the Docs](https://bbstrader.readthedocs.io/en/latest/)**: Full API reference and tutorials.
-- **[GitHub Issues](https://github.com/bbalouki/bbstrader/issues)**: Report bugs or request features.
+- **[Documentation](https://bbalouki.github.io/bbstrader/)**: Full Python API reference and guides (MkDocs).
+- **[C++ API Docs](https://bbalouki.github.io/bbstrader/cpp/)**: Doxygen reference for the C++ core.
+- **[GitHub Issues](https://github.com/bbalouki/bbstrader/issues/new/choose)**: Report bugs or request features.
+- **[Contributing](CONTRIBUTING.md)**: How to set up a dev environment and submit changes.
 - **[LinkedIn](https://www.linkedin.com/in/bertin-balouki-s-15b17a1a6)**: Connect with the creator.
 
 ---
