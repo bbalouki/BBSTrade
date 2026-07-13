@@ -121,7 +121,9 @@ def test_no_funding_matches_default(tmp_path):
     _write_fixture(tmp_path)
     default_total = _final_total(_run(tmp_path, _BuyAndHold))
     _write_fixture(tmp_path)
-    nofunding_total = _final_total(_run(tmp_path, _BuyAndHold, funding_model=NoFunding()))
+    nofunding_total = _final_total(
+        _run(tmp_path, _BuyAndHold, funding_model=NoFunding())
+    )
     assert nofunding_total == pytest.approx(default_total)
 
 

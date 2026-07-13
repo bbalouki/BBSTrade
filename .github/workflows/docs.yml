@@ -1,0 +1,102 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-python-docs:
+    name: Build Python docs (MkDocs)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install docs dependencies
+        run: pip install mkdocs mkdocs-material "mkdocstrings[python]"
+
+      - name: Build MkDocs site
+        run: mkdocs build --site-dir site-python
+
+      - name: Upload Python docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-python
+          path: site-python
+
+  build-cpp-docs:
+    name: Build C++ docs (Doxygen)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen + Graphviz
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+
+      - name: Configure CMake (docs only)
+        run: cmake -S . -B build -DBBSTRADER_BUILD_DOCUMENTATION=ON
+
+      - name: Build Doxygen docs
+        run: cmake --build build --target docs
+
+      - name: Upload C++ docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-cpp
+          path: build/docs/html
+
+  combine:
+    name: Combine Python and C++ docs
+    needs: [build-python-docs, build-cpp-docs]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Python docs
+        uses: actions/download-artifact@v4
+        with:
+          name: site-python
+          path: combined-site
+
+      - name: Download C++ docs
+        uses: actions/download-artifact@v4
+        with:
+          name: site-cpp
+          path: combined-site/cpp
+
+      - name: Upload combined Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: combined-site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: combine
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,40 @@
+name: 📚 Documentation
+description: Report missing, unclear, or incorrect documentation.
+title: "[Docs]: "
+labels: ["documentation", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for issues with the [documentation site](https://bbalouki.github.io/bbstrader/), docstrings, or README content.
+
+  - type: input
+    id: location
+    attributes:
+      label: Page or file
+      description: URL of the docs page, or path to the file (e.g. `docs/reference/btengine.md`, `README.md`).
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong or missing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested fix
+      description: If you have a suggestion for how this should read instead, share it here.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true
