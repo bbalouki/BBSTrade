@@ -24,8 +24,11 @@ scripts.sh
 *.pyd
 .so
 test_setup.py
-packaging/
 FEATURES.md
 IMPROVEMENTS.md
 prompts.txt
 CLAUDE.md
+repo_analyzer.py
+repo_*.json
+repo_*.csv
+site/
