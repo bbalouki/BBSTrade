@@ -38,6 +38,11 @@ jobs:
 
       - name: Set up vcpkg
         uses: lukka/run-vcpkg@v11
+        with:
+          # Pin to the project's manifest: the repo also contains a vcpkg port
+          # manifest under packaging/, and the default recursive glob can match
+          # that one instead (it has no builtin-baseline, since ports don't need one).
+          vcpkgJsonGlob: "vcpkg.json"
 
       - name: Install system packages (Linux)
         if: runner.os == 'Linux'
