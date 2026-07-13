@@ -207,7 +207,6 @@ class BacktestEngine:
                             self.portfolio.update_fill(event)
                             self.strategy.update_trades_from_fill(event)
 
-
             if self.heartbeat:
                 time.sleep(self.heartbeat)
 
