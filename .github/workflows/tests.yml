@@ -43,9 +43,10 @@ jobs:
         shell: bash
         run: |
           if [ "${{ runner.os }}" == "Windows" ]; then
-            pip install -e ".[all,mt5]"
-          else
             pip install -e ".[all]"
+          else
+            # "all" pulls in "mt5", which has no Linux/macOS wheel.
+            pip install -e ".[nlp,social,viz,catalog]"
           fi
           pip install pytest pytest-mock
 
